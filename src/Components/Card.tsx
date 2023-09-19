@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-interface CardProps {
+export interface CardProps {
   isLiked?: boolean;
+  name: string;
   price: number;
-  title: string;
+  imageURL: string;
 }
 
-export function Card({ isLiked = false, price, title }: CardProps) {
+export function Card({ isLiked = false, price, name, imageURL }: CardProps) {
   const [liked, setLiked] = useState(isLiked);
   return (
     <div className="card">
@@ -17,13 +18,8 @@ export function Card({ isLiked = false, price, title }: CardProps) {
           <img src="./img/unliked.svg" alt="unliked icon" />
         )}
       </div>
-      <img
-        src="./img/sneakers/first.png"
-        alt="sneakers"
-        width={133}
-        height={112}
-      />
-      <p>{title}</p>
+      <img src={imageURL} alt="sneakers" width={133} height={112} />
+      <p>{name}</p>
       <div>
         <div className="price-info">
           <span>Цена:</span>

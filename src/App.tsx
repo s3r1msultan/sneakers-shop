@@ -1,219 +1,39 @@
-import React, { useState } from "react";
 import "./App.scss";
-import { Card } from "./Components/Card";
+import { Card, CardProps } from "./Components/Card";
+import { Header } from "./Components/Header";
 
 function App() {
-  const [isOpened, setIsOpened] = useState(false);
+  let sneakers: Array<CardProps> = [
+    {
+      isLiked: true,
+      name: "Nike Air Force 1",
+      price: 25990,
+      imageURL: "./img/sneakers/1.png",
+    },
+    {
+      name: "Nike Air Force 1",
+      price: 25990,
+      imageURL: "./img/sneakers/2.png",
+    },
+    {
+      name: "Nike Air Force 1",
+      price: 25990,
+      imageURL: "./img/sneakers/3.png",
+    },
+    {
+      name: "Nike Air Force 1",
+      price: 25990,
+      imageURL: "./img/sneakers/4.png",
+    },
+    {
+      name: "Nike Air Force 1",
+      price: 25990,
+      imageURL: "./img/sneakers/5.png",
+    },
+  ];
   return (
     <div className="wrapper">
-      <div className={isOpened ? "overlay" : "invisible"}>
-        <div className="cart">
-          <div>
-            <h2>Корзина</h2>
-            <button onClick={() => setIsOpened(!isOpened)}>
-              <img src="./img/cancel.svg" alt="" />
-            </button>
-          </div>
-          <div className="cart__items">
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>{" "}
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>{" "}
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>{" "}
-            <div className="cart__item">
-              <img
-                src="./img/sneakers/first.png"
-                alt="sneakers"
-                width={70}
-                height={70}
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>5000 тг.</b>
-              </div>
-              <button>
-                <img
-                  src="./img/cancel.svg"
-                  alt="cancel"
-                  width={32}
-                  height={32}
-                />
-              </button>
-            </div>
-          </div>
-
-          <div className="cartTotalBlock">
-            <ul>
-              <li>
-                <span>Итого</span>
-                <div></div>
-                <b>210000 тг.</b>
-              </li>
-              <li>
-                <span>Налог 5%</span>
-                <div></div>
-                <b>10500 тг.</b>
-              </li>
-            </ul>
-            <div className="orderButton">
-              <button>Оформить заказ</button>
-              <img src="./img/arrow.svg" alt="arrow icon" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <header className="header">
-        <div className="header__left">
-          <img
-            src="./img/logo.png"
-            alt="Sneakers logo"
-            width={40}
-            height={40}
-          />
-          <div className="header__info">
-            <h3>Sneakers Shop</h3>
-            <p>Магазин лучших кроссовок</p>
-          </div>
-        </div>
-        <ul className="header__right">
-          <li onClick={() => setIsOpened(!isOpened)}>
-            <img src="./img/cart.png" alt="cart icon" width={18} height={18} />
-            <span>5000 тг.</span>
-          </li>
-          <li>
-            <img
-              src="./img/favorite.svg"
-              alt="favorite icon"
-              width={18}
-              height={18}
-            />
-          </li>
-          <li>
-            <img
-              src="./img/profile.png"
-              alt="profile icon"
-              width={18}
-              height={18}
-            />
-          </li>
-        </ul>
-      </header>
+      <Header />
       <main className="main">
         <div>
           <h1>Все кроссовки</h1>
@@ -229,13 +49,17 @@ function App() {
         </div>
 
         <div className="sneakers">
-          <Card isLiked={true} price={50000} title="Nike Air Force 1" />
-          <Card isLiked={true} price={50000} title="Nike Air Force 1" />
-          <Card isLiked={true} price={50000} title="Nike Air Force 1" />
-          <Card isLiked={true} price={50000} title="Nike Air Force 1" />
-          <Card isLiked={true} price={50000} title="Nike Air Force 1" />
-
-          <Card price={20000} title="Adidas " />
+          {sneakers.map(({ isLiked, name, price, imageURL }) => {
+            return (
+              <Card
+                isLiked={isLiked}
+                name={name}
+                price={price}
+                key={name + price}
+                imageURL={imageURL}
+              />
+            );
+          })}
         </div>
       </main>
     </div>
