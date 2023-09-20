@@ -1,0 +1,97 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba($color: black, $alpha: 0.6);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  width: 385px;
+  height: 100%;
+  box-shadow: -10px 4px 24px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  z-index: 2;
+
+  button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all ease-in-out 0.2s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  padding: 30px;
+  & > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  &__items {
+    flex: 1;
+    overflow: auto;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 1px solid #f3f3f3;
+    background: #fff;
+    transition: all ease-in-out 0.2s;
+    margin-bottom: 20px;
+    &:hover {
+      border-color: #f8f8f8;
+      box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.05);
+    }
+    & > img {
+      margin-right: 20px;
+    }
+    & > div {
+      max-width: 150px;
+      margin-right: 10px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    b {
+      font-size: 14px;
+    }
+  }
+
+  .cartTotalBlock {
+    ul {
+      margin-bottom: 20px;
+      li {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        div {
+          height: 1px;
+          flex: 1;
+          border-bottom: 1px dashed #dfdfdf;
+          position: relative;
+          top: -5px;
+          margin: 0 15px;
+        }
+      }
+    }
+    button {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
