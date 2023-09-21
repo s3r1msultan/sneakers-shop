@@ -1,20 +1,19 @@
 import { useState } from "react";
 import styles from "./Card.module.scss";
+import { CommonCardInfo } from "../../App";
 
-export type CardProps = {
-  name: string;
-  price: number;
-  imageURL: string;
+export interface CardProps extends CommonCardInfo {
   isLiked?: boolean;
   isAdded?: boolean;
   onClickPlus: Function;
   onClickFavorite: Function;
-};
+}
 
 export function Card({
   name,
   price,
   imageURL,
+  sneakersId,
   isLiked = false,
   isAdded = false,
   onClickPlus,
@@ -28,7 +27,7 @@ export function Card({
     setLiked(!liked);
   };
   const handleOnClickPlus = () => {
-    onClickPlus({ name, price, imageURL });
+    onClickPlus({ sneakersId, name, price, imageURL });
     setAdded(!added);
   };
   return (

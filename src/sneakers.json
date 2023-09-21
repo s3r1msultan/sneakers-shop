@@ -1,0 +1,54 @@
+[
+    {
+        "sneakersId": 0,
+        "name" : "Мужские Кроссовки Nike Blazer Mid Suede",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/1.png"
+    },
+    {
+        "sneakersId": 1,
+        "name" : "Мужские Кроссовки Nike Air Max 270",
+        "price" : 23990,
+        "imageURL": "./img/sneakers/2.png"
+    },{
+        "sneakersId": 2,
+        "name" : "Мужские Кроссовки Nike Blazer Mid Suede",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/3.png"
+    },{
+        "sneakersId": 3,
+        "name" : "Кроссовки Puma X Aka Boku Future Rider",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/4.png"
+    },{
+        "sneakersId": 4,
+        "name" : "Мужские Кроссовки Under Armour Curry 8",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/5.png"
+    },{
+        "sneakersId": 5,
+        "name" : "Мужские Кроссовки Nike Kyrie 7",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/6.png"
+    },{
+        "sneakersId": 6,
+        "name" : "Мужские Кроссовки Jordan Air Jordan 11",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/7.png"
+    },{
+        "sneakersId": 7,
+        "name" : "Мужские Кроссовки Nike LeBron XVIII",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/8.png"
+    },{
+        "sneakersId": 8,
+        "name" : "Мужские Кроссовки Nike Lebron XVIII Low",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/9.png"
+    },{
+        "sneakersId": 9,
+        "name" : "Мужские Кроссовки Nike Kyrie Flytrap IV",
+        "price" : 25990,
+        "imageURL": "./img/sneakers/10.png"
+    }
+]

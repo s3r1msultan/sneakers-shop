@@ -5,40 +5,79 @@ import { Card } from "./Components/Card/Card";
 import { Header } from "./Components/Header";
 import { Cart } from "./Components/Cart/Cart";
 
-interface CommonCardInfo {
+export interface CommonCardInfo {
+  sneakersId: number;
   name: string;
   price: number;
   imageURL: string;
 }
 
 function App() {
-  const [sneakers, setSneakers] = useState([]);
-  const [cartItems, setCartItems] = useState<Array<any>>([]);
+  const [sneakers, setSneakers] = useState<Array<CommonCardInfo>>([]);
+  const [cartItems, setCartItems] = useState<Array<CommonCardInfo>>([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    axios
-      .get("https://650b01cddfd73d1fab09679c.mockapi.io/sneakers")
-      .then((res) => setSneakers(res.data));
+    const fetchData = async () => {
+      try {
+        await axios
+          .get("https://650b01cddfd73d1fab09679c.mockapi.io/sneakers")
+          .then((res) => setSneakers(res.data));
 
-    axios
-      .get("https://650b01cddfd73d1fab09679c.mockapi.io/cart")
-      .then((res) => setCartItems(res.data));
+        await axios
+          .get("https://650b01cddfd73d1fab09679c.mockapi.io/cart")
+          .then((res) => setCartItems(res.data));
+      } catch (error) {
+        alert("Ошибка при запросе данных");
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
-  const onClickPlus = (obj: CommonCardInfo) => {
-    axios.post("https://650b01cddfd73d1fab09679c.mockapi.io/cart", obj);
-    if (!cartItems.includes(obj)) {
-      setCartItems((prev) => [...prev, obj]);
+  const onClickPlus = async (obj: CommonCardInfo) => {
+    try {
+      const findElement = cartItems.find(
+        (cartItem) => cartItem.sneakersId === obj.sneakersId
+      );
+      if (findElement) {
+        onClickRemove(findElement);
+      } else {
+        setCartItems((prev) => [...prev, obj]);
+        await axios.post(
+          "https://650b01cddfd73d1fab09679c.mockapi.io/cart",
+          obj
+        );
+      }
+      console.log(cartItems);
+    } catch (error) {
+      alert("Возникла ошибка при добавлении в корзину");
+      console.log(error);
     }
   };
 
   const onClickFavorite = () => {};
 
-  const onClickRemove = ({ id }: { id: string }) => {
-    axios.delete(`https://650b01cddfd73d1fab09679c.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== id));
+  const onClickRemove = async (obj: CommonCardInfo) => {
+    try {
+      setCartItems((prev) =>
+        prev.filter((cartItem) => cartItem.sneakersId !== obj.sneakersId)
+      );
+      await axios
+        .get(
+          `https://650b01cddfd73d1fab09679c.mockapi.io/cart?sneakersId=${obj.sneakersId}`
+        )
+        .then((res) => res.data)
+        .then((item) =>
+          axios.delete(
+            `https://650b01cddfd73d1fab09679c.mockapi.io/cart/${item[0].id}`
+          )
+        );
+    } catch (error) {
+      alert("Возникла ошибка при удалении товара");
+      console.log(error);
+    }
   };
 
   const onChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,15 +120,24 @@ function App() {
             .filter(({ name }: { name: string }) => {
               return name.toLowerCase().includes(searchValue.toLowerCase());
             })
-            .map(({ name, price, imageURL }) => {
+            .map((sneakersItem, index) => {
               return (
                 <Card
-                  name={name}
-                  price={price}
-                  key={name + price}
-                  imageURL={imageURL}
+                  sneakersId={sneakersItem.sneakersId}
+                  name={sneakersItem.name}
+                  price={sneakersItem.price}
+                  imageURL={sneakersItem.imageURL}
+                  key={sneakersItem.name + sneakersItem.price + index}
                   onClickFavorite={onClickFavorite}
                   onClickPlus={onClickPlus}
+                  // isAdded={
+                  //   cartItems.find(
+                  //     (cartItem) =>
+                  //       cartItem.sneakersId === sneakersItem.sneakersId
+                  //   )
+                  //     ? true
+                  //     : false
+                  // }
                 />
               );
             })}

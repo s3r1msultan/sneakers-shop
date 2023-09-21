@@ -1,25 +1,27 @@
-export function Cart({
-  onClickRemove,
-  setIsCartOpened,
-  cartItems,
-}: {
+import { CommonCardInfo } from "../../App";
+
+interface CartProps {
   onClickRemove: Function;
   setIsCartOpened: Function;
-  cartItems?: { name: string; price: number; imageURL: string; id: string }[];
-}) {
+  cartItems: CommonCardInfo[];
+}
+
+export function Cart({ onClickRemove, setIsCartOpened, cartItems }: CartProps) {
   return (
     <div className="overlay">
       <div className="cart">
         <div>
           <h2>Корзина</h2>
           <button onClick={() => setIsCartOpened(false)}>
-            <img src="./img/cancel.svg" alt="" />
+            <img src="./img/cancel.svg" alt="close icon" />
           </button>
         </div>
         <div className="cart__items">
-          {cartItems?.map((cartItem) => {
+          {cartItems.map((cartItem, index) => {
             return (
-              <div className="cart__item" key={cartItem.name + cartItem.price}>
+              <div
+                className="cart__item"
+                key={cartItem.name + cartItem.price + index}>
                 <img
                   src={cartItem.imageURL}
                   alt="sneakers"
@@ -33,8 +35,7 @@ export function Cart({
                 <button
                   onClick={() => {
                     onClickRemove(cartItem);
-                  }}
-                >
+                  }}>
                   <img
                     src="./img/cancel.svg"
                     alt="cancel"
