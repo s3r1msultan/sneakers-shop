@@ -22,6 +22,11 @@ export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
         </div>
       </Link>
       <ul className="header__right">
+        <li>
+          <Link to={"/bootstrap"}>
+            <h4>Bootstrap part</h4>
+          </Link>
+        </li>
         <li onClick={() => setIsCartOpened(true)}>
           <img
             src="./img/cart.png"

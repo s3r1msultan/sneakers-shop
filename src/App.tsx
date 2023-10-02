@@ -7,6 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Favorites } from "./pages/Favorites";
 import { AppContext } from "./context";
+import { Profile } from "./pages/Profile";
+import { Bootstrap } from "./pages/Bootstrap";
 
 export interface CommonCardInfo {
   id: number;
@@ -21,21 +23,26 @@ function App() {
   const [favorites, setFavorites] = useState<Array<CommonCardInfo>>([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
+        const user = await axios
+          .get("https://sneakers-shop-db.onrender.com/users/0")
+          .then((res) => res.data);
         const sneakersDB = await axios
-          .get("http://localhost:3001/sneakers")
+          .get("https://sneakers-shop-db.onrender.com/sneakers")
           .then((res) => res.data);
         const cartDB = await axios
-          .get("http://localhost:3001/users/0")
+          .get("https://sneakers-shop-db.onrender.com/users/0")
           .then((res) => res.data.cart);
         const favoritesDB = await axios
-          .get("http://localhost:3001/users/0")
+          .get("https://sneakers-shop-db.onrender.com/users/0")
           .then((res) => res.data.favorites);
         setIsLoading(false);
+        setUser(user);
         setCartItems(cartDB);
         setFavorites(favoritesDB);
         setSneakers(sneakersDB);
@@ -56,7 +63,7 @@ function App() {
         onClickRemove(foundElement);
       } else {
         setCartItems((prev) => [...prev, sneakersItem]);
-        await axios.patch("http://localhost:3001/users/0", {
+        await axios.patch("https://sneakers-shop-db.onrender.com/users/0", {
           cart: [...cartItems, sneakersItem],
         });
       }
@@ -75,14 +82,14 @@ function App() {
         setFavorites((prev) =>
           prev.filter((favorite) => favorite.id !== foundElement.id)
         );
-        await axios.patch("http://localhost:3001/users/0", {
+        await axios.patch("https://sneakers-shop-db.onrender.com/users/0", {
           favorites: favorites.filter(
             (favorite) => favorite.id !== foundElement.id
           ),
         });
       } else {
         setFavorites((prev) => [...prev, sneakersItem]);
-        await axios.patch("http://localhost:3001/users/0", {
+        await axios.patch("https://sneakers-shop-db.onrender.com/users/0", {
           favorites: [...favorites, sneakersItem],
         });
       }
@@ -97,7 +104,7 @@ function App() {
       setCartItems((prev) =>
         prev.filter((cartItem) => cartItem.id !== sneakersItem.id)
       );
-      axios.patch("http://localhost:3001/users/0", {
+      axios.patch("https://sneakers-shop-db.onrender.com/users/0", {
         cart: cartItems.filter((cartItem) => cartItem.id !== sneakersItem.id),
       });
     } catch (error) {
@@ -133,6 +140,10 @@ function App() {
         <Header setIsCartOpened={setIsCartOpened} />
         <Routes>
           <Route
+            path="/bootstrap"
+            element={<Bootstrap />}
+          />
+          <Route
             path="/"
             element={
               <Home
@@ -149,6 +160,11 @@ function App() {
                 onClickPlus={onClickPlus}
               />
             }
+          />
+
+          <Route
+            path="/profile"
+            element={<Profile user={user} />}
           />
         </Routes>
       </div>
