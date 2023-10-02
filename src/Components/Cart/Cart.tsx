@@ -1,19 +1,25 @@
-import { CommonCardInfo } from "../../App";
+import { useState, useContext } from "react";
+import { AppContext } from "../../context";
 
 interface CartProps {
   onClickRemove: Function;
   setIsCartOpened: Function;
-  cartItems: CommonCardInfo[];
 }
 
-export function Cart({ onClickRemove, setIsCartOpened, cartItems }: CartProps) {
+export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
+  const { cartItems } = useContext(AppContext);
+  const totalPrice = cartItems.reduce((sum, { price }) => sum + price, 0);
+
   return (
     <div className="overlay">
       <div className="cart">
         <div>
           <h2>Корзина</h2>
           <button onClick={() => setIsCartOpened(false)}>
-            <img src="./img/cancel.svg" alt="close icon" />
+            <img
+              src="./img/cancel.svg"
+              alt="close icon"
+            />
           </button>
         </div>
         <div className="cart__items">
@@ -21,7 +27,8 @@ export function Cart({ onClickRemove, setIsCartOpened, cartItems }: CartProps) {
             return (
               <div
                 className="cart__item"
-                key={cartItem.name + cartItem.price + index}>
+                key={cartItem.name + cartItem.price + index}
+              >
                 <img
                   src={cartItem.imageURL}
                   alt="sneakers"
@@ -35,7 +42,8 @@ export function Cart({ onClickRemove, setIsCartOpened, cartItems }: CartProps) {
                 <button
                   onClick={() => {
                     onClickRemove(cartItem);
-                  }}>
+                  }}
+                >
                   <img
                     src="./img/cancel.svg"
                     alt="cancel"
@@ -53,17 +61,20 @@ export function Cart({ onClickRemove, setIsCartOpened, cartItems }: CartProps) {
             <li>
               <span>Итого</span>
               <div></div>
-              <b>210000 тг.</b>
+              <b>{totalPrice} тг.</b>
             </li>
             <li>
               <span>Налог 5%</span>
               <div></div>
-              <b>10500 тг.</b>
+              <b>{totalPrice * 0.05} тг.</b>
             </li>
           </ul>
           <div className="orderButton">
             <button>Оформить заказ</button>
-            <img src="./img/arrow.svg" alt="arrow icon" />
+            <img
+              src="./img/arrow.svg"
+              alt="arrow icon"
+            />
           </div>
         </div>
       </div>

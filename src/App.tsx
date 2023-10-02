@@ -1,12 +1,15 @@
 import "./App.scss";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Card } from "./Components/Card/Card";
-import { Header } from "./Components/Header";
+import { useEffect, useState } from "react";
+import { Header } from "./Components/Header/Header";
 import { Cart } from "./Components/Cart/Cart";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Favorites } from "./pages/Favorites";
+import { AppContext } from "./context";
 
 export interface CommonCardInfo {
-  sneakersId: number;
+  id: number;
   name: string;
   price: number;
   imageURL: string;
@@ -15,19 +18,27 @@ export interface CommonCardInfo {
 function App() {
   const [sneakers, setSneakers] = useState<Array<CommonCardInfo>>([]);
   const [cartItems, setCartItems] = useState<Array<CommonCardInfo>>([]);
+  const [favorites, setFavorites] = useState<Array<CommonCardInfo>>([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await axios
-          .get("https://650b01cddfd73d1fab09679c.mockapi.io/sneakers")
-          .then((res) => setSneakers(res.data));
-
-        await axios
-          .get("https://650b01cddfd73d1fab09679c.mockapi.io/cart")
-          .then((res) => setCartItems(res.data));
+        setIsLoading(true);
+        const sneakersDB = await axios
+          .get("http://localhost:3001/sneakers")
+          .then((res) => res.data);
+        const cartDB = await axios
+          .get("http://localhost:3001/users/0")
+          .then((res) => res.data.cart);
+        const favoritesDB = await axios
+          .get("http://localhost:3001/users/0")
+          .then((res) => res.data.favorites);
+        setIsLoading(false);
+        setCartItems(cartDB);
+        setFavorites(favoritesDB);
+        setSneakers(sneakersDB);
       } catch (error) {
         alert("Ошибка при запросе данных");
         console.log(error);
@@ -36,114 +47,112 @@ function App() {
     fetchData();
   }, []);
 
-  const onClickPlus = async (obj: CommonCardInfo) => {
+  const onClickPlus = async (sneakersItem: CommonCardInfo) => {
     try {
-      const findElement = cartItems.find(
-        (cartItem) => cartItem.sneakersId === obj.sneakersId
+      const foundElement = cartItems.find(
+        (cartItem) => cartItem.id === sneakersItem.id
       );
-      if (findElement) {
-        onClickRemove(findElement);
+      if (foundElement) {
+        onClickRemove(foundElement);
       } else {
-        setCartItems((prev) => [...prev, obj]);
-        await axios.post(
-          "https://650b01cddfd73d1fab09679c.mockapi.io/cart",
-          obj
-        );
+        setCartItems((prev) => [...prev, sneakersItem]);
+        await axios.patch("http://localhost:3001/users/0", {
+          cart: [...cartItems, sneakersItem],
+        });
       }
-      console.log(cartItems);
     } catch (error) {
       alert("Возникла ошибка при добавлении в корзину");
       console.log(error);
     }
   };
 
-  const onClickFavorite = () => {};
-
-  const onClickRemove = async (obj: CommonCardInfo) => {
+  const onClickFavorite = async (sneakersItem: CommonCardInfo) => {
     try {
-      setCartItems((prev) =>
-        prev.filter((cartItem) => cartItem.sneakersId !== obj.sneakersId)
+      const foundElement = favorites.find(
+        (favorite) => favorite.id === sneakersItem.id
       );
-      await axios
-        .get(
-          `https://650b01cddfd73d1fab09679c.mockapi.io/cart?sneakersId=${obj.sneakersId}`
-        )
-        .then((res) => res.data)
-        .then((item) =>
-          axios.delete(
-            `https://650b01cddfd73d1fab09679c.mockapi.io/cart/${item[0].id}`
-          )
+      if (foundElement) {
+        setFavorites((prev) =>
+          prev.filter((favorite) => favorite.id !== foundElement.id)
         );
+        await axios.patch("http://localhost:3001/users/0", {
+          favorites: favorites.filter(
+            (favorite) => favorite.id !== foundElement.id
+          ),
+        });
+      } else {
+        setFavorites((prev) => [...prev, sneakersItem]);
+        await axios.patch("http://localhost:3001/users/0", {
+          favorites: [...favorites, sneakersItem],
+        });
+      }
     } catch (error) {
-      alert("Возникла ошибка при удалении товара");
+      alert("Ошибка при добавлении в закладки");
       console.log(error);
     }
   };
 
-  const onChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
+  const onClickRemove = async (sneakersItem: CommonCardInfo) => {
+    try {
+      setCartItems((prev) =>
+        prev.filter((cartItem) => cartItem.id !== sneakersItem.id)
+      );
+      axios.patch("http://localhost:3001/users/0", {
+        cart: cartItems.filter((cartItem) => cartItem.id !== sneakersItem.id),
+      });
+    } catch (error) {
+      alert("Возникла ошибка при удалении товара из корзины");
+      console.log(error);
+    }
+  };
+
+  const hasSneakers = (
+    sneakersItem: CommonCardInfo,
+    array: CommonCardInfo[]
+  ) => {
+    return array.some((item) => item.id === sneakersItem.id);
   };
 
   return (
-    <div className="wrapper">
-      {isCartOpened && (
-        <Cart
-          onClickRemove={onClickRemove}
-          setIsCartOpened={setIsCartOpened}
-          cartItems={cartItems}
-        />
-      )}
-      <Header setIsCartOpened={setIsCartOpened} />
-      <main className="main">
-        <div>
-          <h1>
-            {searchValue ? `Поиск по запросу: ${searchValue}` : "Все кроссовки"}
-          </h1>
-          <div className="search-block">
-            <img
-              src="./img/search.svg"
-              alt="search icon"
-              width={14}
-              height={14}
-            />
-            <input
-              onChange={onChangeSearchValue}
-              type="text"
-              placeholder="Поиск..."
-              value={searchValue}
-            />
-          </div>
-        </div>
-
-        <div className="sneakers">
-          {sneakers
-            .filter(({ name }: { name: string }) => {
-              return name.toLowerCase().includes(searchValue.toLowerCase());
-            })
-            .map((sneakersItem, index) => {
-              return (
-                <Card
-                  sneakersId={sneakersItem.sneakersId}
-                  name={sneakersItem.name}
-                  price={sneakersItem.price}
-                  imageURL={sneakersItem.imageURL}
-                  key={sneakersItem.name + sneakersItem.price + index}
-                  onClickFavorite={onClickFavorite}
-                  onClickPlus={onClickPlus}
-                  // isAdded={
-                  //   cartItems.find(
-                  //     (cartItem) =>
-                  //       cartItem.sneakersId === sneakersItem.sneakersId
-                  //   )
-                  //     ? true
-                  //     : false
-                  // }
-                />
-              );
-            })}
-        </div>
-      </main>
-    </div>
+    <AppContext.Provider
+      value={{
+        sneakers,
+        cartItems,
+        favorites,
+        isLoading,
+        hasSneakers,
+      }}
+    >
+      <div className="wrapper">
+        {isCartOpened && (
+          <Cart
+            onClickRemove={onClickRemove}
+            setIsCartOpened={setIsCartOpened}
+          />
+        )}
+        <Header setIsCartOpened={setIsCartOpened} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                onClickFavorite={onClickFavorite}
+                onClickPlus={onClickPlus}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <Favorites
+                onClickFavorite={onClickFavorite}
+                onClickPlus={onClickPlus}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </AppContext.Provider>
   );
 }
 
