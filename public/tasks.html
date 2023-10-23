@@ -11,27 +11,33 @@
       rel="stylesheet"
       href="tasks.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <!-- Task 1 -->
     <div class="task task1">
       <h2>Interactive To-Do List</h2>
-      <ul id="todo-list">
-        <h4>Here should be tasks</h4>
-      </ul>
-      <input
-        type="text"
-        id="new-task"
-        placeholder="Add a new task"
-      />
-      <button onclick="addTask()">Add</button>
+      <div class="center">
+        <ul id="todo-list">
+          <h4>Here should be tasks</h4>
+        </ul>
+        <input
+          type="text"
+          id="new-task"
+          placeholder="Add a new task"
+        />
+        <button onclick="addTask()">Add</button>
+      </div>
     </div>
 
     <!-- Task 2 -->
     <div class="task task2">
       <h2>Form Validation</h2>
-      <form onsubmit="return validateForm()">
+      <form class="center">
         <label for="name">Name:</label>
         <input
           type="text"
@@ -51,26 +57,30 @@
     <!-- Task 3 -->
     <div class="task task3">
       <h2>Animated Countdown Timer</h2>
-      <input
-        type="number"
-        id="duration"
-        placeholder="Enter duration (seconds)"
-      />
-      <button onclick="startTimer()">Start timer</button>
-      <div id="timer">Here should be the number of seconds</div>
+      <div class="center">
+        <input
+          type="number"
+          id="duration"
+          placeholder="Enter duration (seconds)"
+        />
+        <button onclick="startTimer()">Start timer</button>
+        <div id="timer">Here should be the number of seconds</div>
+      </div>
     </div>
 
     <!-- Task 4 -->
     <div class="task task4">
       <h2>Interactive Elements</h2>
-      <button onclick="createButton()">Create Button</button>
-      <div id="elements"></div>
+      <div class="center">
+        <button onclick="createButton()">Create Button</button>
+        <div id="elements"></div>
+      </div>
     </div>
 
     <!-- Task 5 -->
     <div class="task task5">
       <h2>User Feedback</h2>
-      <form>
+      <form class="center">
         <label>Name:</label>
         <input
           type="text"

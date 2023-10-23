@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter";
 }
 
 ul {
@@ -14,8 +15,15 @@ button {
   width: fit-content !important;
 }
 
-input {
+input,
+textarea {
   padding: 3px 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+input:focus {
+  outline: none;
 }
 
 .task {
@@ -28,12 +36,14 @@ input {
     margin-bottom: 15px;
   }
 }
-
-.task5 form,
-.task2 form {
+.center {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.task5 form,
+.task2 form {
   max-width: 350px;
   margin: 0 auto;
   & > * {
