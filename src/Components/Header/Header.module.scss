@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #eaeaea;
+  padding: 40px;
+  &__left {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 16px;
+    }
+  }
+  &__info {
+    p {
+      color: rgba(157, 157, 157, 1);
+    }
+    h3 {
+      color: #000;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    li {
+      * {
+        cursor: pointer;
+      }
+    }
+    li {
+      margin: 0 15px;
+    }
+    & > li {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 10px;
+      }
+      span {
+        color: #5c5c5c;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
+    }
+  }
+}

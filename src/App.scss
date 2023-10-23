@@ -5,59 +5,6 @@
   background: #fff;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid 1px #eaeaea;
-  padding: 40px;
-  &__left {
-    display: flex;
-    align-items: center;
-    img {
-      margin-right: 16px;
-    }
-  }
-  &__info {
-    p {
-      color: rgba(157, 157, 157, 1);
-    }
-    h3 {
-      color: #000;
-      font-size: 20px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-  }
-  &__right {
-    display: flex;
-    align-items: center;
-    li {
-      * {
-        cursor: pointer;
-      }
-    }
-    li {
-      margin: 0 15px;
-    }
-    & > li {
-      display: flex;
-      align-items: center;
-      img {
-        margin-right: 10px;
-      }
-      span {
-        color: #5c5c5c;
-        font-family: Inter;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-      }
-    }
-  }
-}
-
 .main {
   padding: 40px;
   & > div:first-child {
@@ -186,38 +133,38 @@
   }
 }
 
-.orderButton {
-  position: relative;
-  &:hover {
-    img {
-      transform: translateX(5px);
-    }
-  }
-  button {
-    width: 100%;
-    border-radius: 18px;
-    height: 55px;
-    background: #9dd458;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    opacity: 1;
-    cursor: pointer;
-    transition: all ease-in-out 0.2s;
-    &:hover {
-      background: lighten($color: #9dd458, $amount: 10%);
-    }
-    &:active {
-      background: darken($color: #9dd458, $amount: 10%);
-    }
-  }
-  img {
-    position: absolute;
-    right: 30px;
-    top: 20px;
-    transition: all ease-in-out 0.15s;
-  }
-}
+// .orderButton {
+//   position: relative;
+//   &:hover {
+//     img {
+//       transform: translateX(5px);
+//     }
+//   }
+//   button {
+//     width: 100%;
+//     border-radius: 18px;
+//     height: 55px;
+//     background: #9dd458;
+//     color: #fff;
+//     font-size: 16px;
+//     font-weight: 600;
+//     opacity: 1;
+//     cursor: pointer;
+//     transition: all ease-in-out 0.2s;
+//     &:hover {
+//       background: lighten($color: #9dd458, $amount: 10%);
+//     }
+//     &:active {
+//       background: darken($color: #9dd458, $amount: 10%);
+//     }
+//   }
+//   img {
+//     position: absolute;
+//     right: 30px;
+//     top: 20px;
+//     transition: all ease-in-out 0.15s;
+//   }
+// }
 
 .invisible {
   transition: all linear 5s;

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Tasks</title>
+    <link
+      rel="stylesheet"
+      href="tasks.css"
+    />
+  </head>
+
+  <body>
+    <!-- Task 1 -->
+    <div class="task task1">
+      <h2>Interactive To-Do List</h2>
+      <ul id="todo-list">
+        <h4>Here should be tasks</h4>
+      </ul>
+      <input
+        type="text"
+        id="new-task"
+        placeholder="Add a new task"
+      />
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <!-- Task 2 -->
+    <div class="task task2">
+      <h2>Form Validation</h2>
+      <form onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          required
+        />
+        <label for="email">Email:</label>
+        <input
+          type="text"
+          id="email"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- Task 3 -->
+    <div class="task task3">
+      <h2>Animated Countdown Timer</h2>
+      <input
+        type="number"
+        id="duration"
+        placeholder="Enter duration (seconds)"
+      />
+      <button onclick="startTimer()">Start timer</button>
+      <div id="timer">Here should be the number of seconds</div>
+    </div>
+
+    <!-- Task 4 -->
+    <div class="task task4">
+      <h2>Interactive Elements</h2>
+      <button onclick="createButton()">Create Button</button>
+      <div id="elements"></div>
+    </div>
+
+    <!-- Task 5 -->
+    <div class="task task5">
+      <h2>User Feedback</h2>
+      <form>
+        <label>Name:</label>
+        <input
+          type="text"
+          required
+        />
+        <label>Email:</label>
+        <input
+          type="text"
+          required
+        />
+        <label>Message:</label>
+        <textarea required></textarea>
+        <button
+          type="submit"
+          onclick="showAlert()"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <script src="./task1.js"></script>
+    <script src="./task2.js"></script>
+    <script src="./task3.js"></script>
+    <script src="./task4.js"></script>
+    <script src="./task5.js"></script>
+  </body>
+</html>

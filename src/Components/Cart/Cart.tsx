@@ -1,5 +1,6 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../context";
+import style from "./Cart.module.scss";
 
 interface CartProps {
   onClickRemove: Function;
@@ -9,10 +10,10 @@ interface CartProps {
 export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
   const { cartItems } = useContext(AppContext);
   const totalPrice = cartItems.reduce((sum, { price }) => sum + price, 0);
-
+  console.log(style);
   return (
-    <div className="overlay">
-      <div className="cart">
+    <div className={style.overlay}>
+      <div className={style.cart}>
         <div>
           <h2>Корзина</h2>
           <button onClick={() => setIsCartOpened(false)}>
@@ -22,11 +23,11 @@ export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
             />
           </button>
         </div>
-        <div className="cart__items">
+        <div className={style.cart__items}>
           {cartItems.map((cartItem, index) => {
             return (
               <div
-                className="cart__item"
+                className={style.cart__item}
                 key={cartItem.name + cartItem.price + index}
               >
                 <img
@@ -56,7 +57,7 @@ export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
           })}
         </div>
 
-        <div className="cartTotalBlock">
+        <div className={style.cartTotalBlock}>
           <ul>
             <li>
               <span>Итого</span>
@@ -69,7 +70,7 @@ export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
               <b>{totalPrice * 0.05} тг.</b>
             </li>
           </ul>
-          <div className="orderButton">
+          <div className={style.orderButton}>
             <button>Оформить заказ</button>
             <img
               src="./img/arrow.svg"

@@ -8,7 +8,6 @@ import { Home } from "./pages/Home";
 import { Favorites } from "./pages/Favorites";
 import { AppContext } from "./context";
 import { Profile } from "./pages/Profile";
-import { Bootstrap } from "./pages/Bootstrap";
 
 export interface CommonCardInfo {
   id: number;
@@ -138,11 +137,8 @@ function App() {
           />
         )}
         <Header setIsCartOpened={setIsCartOpened} />
+        <div></div>
         <Routes>
-          <Route
-            path="/bootstrap"
-            element={<Bootstrap />}
-          />
           <Route
             path="/"
             element={
@@ -161,7 +157,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/profile"
             element={<Profile user={user} />}

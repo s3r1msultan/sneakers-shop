@@ -1,32 +1,29 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../../context";
+import style from "./Header.module.scss";
 
 export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
   const { cartItems } = useContext(AppContext);
   const totalPrice = cartItems.reduce((sum, { price }) => sum + price, 0);
+  console.log(style);
   return (
-    <header className="header">
+    <header className={style.header}>
       <Link to={"/"}>
-        <div className="header__left">
+        <div className={style.header__left}>
           <img
             src="./img/logo.png"
             alt="Sneakers logo"
             width={40}
             height={40}
           />
-          <div className="header__info">
+          <div className={style.header__info}>
             <h3>Sneakers Shop</h3>
             <p>Магазин лучших кроссовок</p>
           </div>
         </div>
       </Link>
-      <ul className="header__right">
-        <li>
-          <Link to={"/bootstrap"}>
-            <h4>Bootstrap part</h4>
-          </Link>
-        </li>
+      <ul className={style.header__right}>
         <li onClick={() => setIsCartOpened(true)}>
           <img
             src="./img/cart.png"

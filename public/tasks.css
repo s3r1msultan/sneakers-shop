@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  padding: 5px 10px;
+  margin: 5px;
+  width: fit-content !important;
+}
+
+input {
+  padding: 3px 5px;
+}
+
+.task {
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+}
+
+.task5 form,
+.task2 form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 350px;
+  margin: 0 auto;
+  & > * {
+    width: 100%;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+}
