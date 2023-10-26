@@ -170,3 +170,30 @@
   transition: all linear 5s;
   display: none;
 }
+.task {
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+  button {
+    padding: 5px 10px;
+    margin: 5px;
+    width: fit-content !important;
+  }
+
+  input,
+  textarea {
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  .center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}

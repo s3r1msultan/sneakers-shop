@@ -6,7 +6,6 @@ import style from "./Header.module.scss";
 export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
   const { cartItems } = useContext(AppContext);
   const totalPrice = cartItems.reduce((sum, { price }) => sum + price, 0);
-  console.log(style);
   return (
     <header className={style.header}>
       <Link to={"/"}>

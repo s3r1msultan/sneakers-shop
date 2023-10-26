@@ -123,6 +123,8 @@ function App() {
     <AppContext.Provider
       value={{
         sneakers,
+        setSneakers,
+
         cartItems,
         favorites,
         isLoading,

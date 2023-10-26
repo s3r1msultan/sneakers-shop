@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styles from "./Card.module.scss";
+import style from "./Card.module.scss";
 import { CommonCardInfo } from "../../App";
 import ContentLoader from "react-content-loader";
 import { AppContext } from "../../context";
@@ -25,7 +25,7 @@ export function Card({
     onClickPlus(sneakersItem);
   };
   return (
-    <div className={styles.card}>
+    <div className={style.card}>
       {isLoading ? (
         <ContentLoader
           speed={2}
@@ -79,7 +79,7 @@ export function Card({
       ) : (
         <>
           <div
-            className={styles.favorite}
+            className={style.favorite}
             onClick={handleOnClickFavorite}
           >
             {hasSneakers(sneakersItem, favorites) ? (
@@ -102,7 +102,7 @@ export function Card({
           />
           <p>{sneakersItem.name}</p>
           <div>
-            <div className={styles["price-info"]}>
+            <div className={style["price-info"]}>
               <span>Цена:</span>
               <b>{sneakersItem.price} тг.</b>
             </div>

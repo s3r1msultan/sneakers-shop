@@ -7,6 +7,7 @@ type AppContext = {
   favorites: CommonCardInfo[];
   isLoading: boolean;
   hasSneakers: Function;
+  setSneakers: Function;
 };
 
 export const AppContext = createContext<AppContext>({
@@ -15,4 +16,5 @@ export const AppContext = createContext<AppContext>({
   favorites: [],
   isLoading: true,
   hasSneakers: () => {},
+  setSneakers: () => {},
 });

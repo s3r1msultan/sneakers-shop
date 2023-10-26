@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { CommonCardInfo } from "../App";
 import { Card } from "../Components/Card/Card";
 import { AppContext } from "../context";
+import { AddButton } from "../Components/AddButton/AddButton";
 
 export function Home({
   onClickFavorite,
@@ -57,6 +58,10 @@ export function Home({
       </div>
 
       <div className="sneakers">{renderCards()}</div>
+      <AddButton
+        onClickFavorite={onClickFavorite}
+        onClickPlus={onClickPlus}
+      />
     </main>
   );
 }

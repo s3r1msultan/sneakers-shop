@@ -6,8 +6,7 @@
   background-color: #fff;
   cursor: pointer;
   transition: box-shadow ease-in-out 0.2s, transform ease-in-out 0.2s;
-
-  &:hover {
+  a &:hover {
     border-color: #f8f8f8;
     box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.05);
     transform: translateY(-5px);
