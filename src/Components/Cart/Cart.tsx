@@ -10,7 +10,6 @@ interface CartProps {
 export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
   const { cartItems } = useContext(AppContext);
   const totalPrice = cartItems.reduce((sum, { price }) => sum + price, 0);
-  console.log(style);
   return (
     <div className={style.overlay}>
       <div className={style.cart}>

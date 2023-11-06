@@ -1,15 +1,23 @@
-import "./App.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Header } from "./Components/Header/Header";
-import { Cart } from "./Components/Cart/Cart";
+import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Favorites } from "./pages/Favorites";
+
 import { AppContext } from "./context";
+import { Cart } from "./Components/Cart/Cart";
+import { Header } from "./Components/Header/Header";
+import { Favorites } from "./pages/Favorites";
+import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 
-export interface CommonCardInfo {
+import "bootstrap/scss/bootstrap.scss";
+import "./App.scss";
+import { Footer } from "./Components/Footer/Footer";
+import AboutUs from "./pages/AboutUs";
+import Contacts from "./pages/Contacts";
+import Quiz from "./pages/Quiz";
+
+export interface SneakersItem {
   id: number;
   name: string;
   price: number;
@@ -17,9 +25,9 @@ export interface CommonCardInfo {
 }
 
 function App() {
-  const [sneakers, setSneakers] = useState<Array<CommonCardInfo>>([]);
-  const [cartItems, setCartItems] = useState<Array<CommonCardInfo>>([]);
-  const [favorites, setFavorites] = useState<Array<CommonCardInfo>>([]);
+  const [sneakers, setSneakers] = useState<Array<SneakersItem>>([]);
+  const [cartItems, setCartItems] = useState<Array<SneakersItem>>([]);
+  const [favorites, setFavorites] = useState<Array<SneakersItem>>([]);
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -53,7 +61,7 @@ function App() {
     fetchData();
   }, []);
 
-  const onClickPlus = async (sneakersItem: CommonCardInfo) => {
+  const onClickPlus = async (sneakersItem: SneakersItem) => {
     try {
       const foundElement = cartItems.find(
         (cartItem) => cartItem.id === sneakersItem.id
@@ -72,7 +80,7 @@ function App() {
     }
   };
 
-  const onClickFavorite = async (sneakersItem: CommonCardInfo) => {
+  const onClickFavorite = async (sneakersItem: SneakersItem) => {
     try {
       const foundElement = favorites.find(
         (favorite) => favorite.id === sneakersItem.id
@@ -98,7 +106,7 @@ function App() {
     }
   };
 
-  const onClickRemove = async (sneakersItem: CommonCardInfo) => {
+  const onClickRemove = async (sneakersItem: SneakersItem) => {
     try {
       setCartItems((prev) =>
         prev.filter((cartItem) => cartItem.id !== sneakersItem.id)
@@ -112,10 +120,7 @@ function App() {
     }
   };
 
-  const hasSneakers = (
-    sneakersItem: CommonCardInfo,
-    array: CommonCardInfo[]
-  ) => {
+  const hasSneakers = (sneakersItem: SneakersItem, array: SneakersItem[]) => {
     return array.some((item) => item.id === sneakersItem.id);
   };
 
@@ -124,14 +129,13 @@ function App() {
       value={{
         sneakers,
         setSneakers,
-
         cartItems,
         favorites,
         isLoading,
         hasSneakers,
       }}
     >
-      <div className="wrapper">
+      <Container className="wrapper">
         {isCartOpened && (
           <Cart
             onClickRemove={onClickRemove}
@@ -163,8 +167,21 @@ function App() {
             path="/profile"
             element={<Profile user={user} />}
           />
+          <Route
+            path="/contacts"
+            element={<Contacts />}
+          />
+          <Route
+            path="/about"
+            element={<AboutUs />}
+          />
+          <Route
+            path="/quiz"
+            element={<Quiz />}
+          />
         </Routes>
-      </div>
+        <Footer />
+      </Container>
     </AppContext.Provider>
   );
 }

@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { CommonCardInfo } from "./App";
+import { SneakersItem } from "./App";
 
 type AppContext = {
-  sneakers: CommonCardInfo[];
-  cartItems: CommonCardInfo[];
-  favorites: CommonCardInfo[];
+  sneakers: SneakersItem[];
+  cartItems: SneakersItem[];
+  favorites: SneakersItem[];
   isLoading: boolean;
   hasSneakers: Function;
   setSneakers: Function;

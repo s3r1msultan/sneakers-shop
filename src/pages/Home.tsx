@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { CommonCardInfo } from "../App";
 import { Card } from "../Components/Card/Card";
 import { AppContext } from "../context";
-import { AddButton } from "../Components/AddButton/AddButton";
+import { Slider } from "../Components/Slider/Slider";
+import Quiz from "./Quiz";
 
 export function Home({
   onClickFavorite,
@@ -38,6 +38,9 @@ export function Home({
   return (
     <main className="main">
       <div>
+        <Slider />
+      </div>
+      <div>
         <h1>
           {searchValue ? `Поиск по запросу: ${searchValue}` : "Все кроссовки"}
         </h1>
@@ -56,12 +59,13 @@ export function Home({
           />
         </div>
       </div>
-
       <div className="sneakers">{renderCards()}</div>
-      <AddButton
-        onClickFavorite={onClickFavorite}
-        onClickPlus={onClickPlus}
-      />
+      <div style={{ display: "block" }}>
+        <h3>Небольшой куиз. Он ничего не определяет</h3>
+        <div>
+          <Quiz />
+        </div>
+      </div>
     </main>
   );
 }

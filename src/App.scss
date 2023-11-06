@@ -1,13 +1,19 @@
+@import "./Components/Slider/Slider.scss";
+@import "./Components/Header/Header.module.scss";
+
+@import "./styles/vars.scss";
+
 .wrapper {
   margin: 50px auto;
   max-width: 1080px;
   border-radius: 20px;
   background: #fff;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
+  padding: 5px 10px;
 }
 .main {
   padding: 40px;
-  & > div:first-child {
+  & > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,7 +25,7 @@
     align-items: center;
     padding: 0 15px;
     border-radius: 10px;
-    border: 1px solid #f3f3f3;
+    border: 1px solid $border-color;
     input {
       padding: 15px;
       font-size: 16px;
@@ -28,10 +34,11 @@
   }
 
   .sneakers {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 40px;
-    column-gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-row-gap: 40px;
+    justify-items: center;
+    align-items: center;
   }
 }
 
@@ -169,31 +176,4 @@
 .invisible {
   transition: all linear 5s;
   display: none;
-}
-.task {
-  margin: 5px;
-  padding: 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-
-  h2 {
-    margin-bottom: 15px;
-  }
-  button {
-    padding: 5px 10px;
-    margin: 5px;
-    width: fit-content !important;
-  }
-
-  input,
-  textarea {
-    padding: 3px 5px;
-    border-radius: 5px;
-    border: 1px solid gray;
-  }
-  .center {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
 }

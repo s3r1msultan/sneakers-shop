@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import style from "./Card.module.scss";
-import { CommonCardInfo } from "../../App";
+import { SneakersItem } from "../../App";
 import ContentLoader from "react-content-loader";
 import { AppContext } from "../../context";
 
 export interface CardProps {
-  sneakersItem: CommonCardInfo;
+  sneakersItem: SneakersItem;
   onClickPlus: Function;
   onClickFavorite: Function;
 }
