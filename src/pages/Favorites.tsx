@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "../Components/Card/Card";
 import { AppContext } from "../context";
+import DiscountOffer from "../Components/DiscountOffer/DiscountOffer";
 
 export function Favorites({
   onClickFavorite,
@@ -28,6 +29,7 @@ export function Favorites({
           );
         })}
       </div>
+      <DiscountOffer />
     </main>
   );
 }

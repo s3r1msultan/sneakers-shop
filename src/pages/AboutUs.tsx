@@ -7,23 +7,31 @@ import {
   ListGroup,
   Dropdown,
 } from "react-bootstrap";
+import DiscountOffer from "../Components/DiscountOffer/DiscountOffer";
 
 const AboutUs: React.FC = () => {
-  const animatedCard = document.getElementById("animatedCard");
-  animatedCard?.addEventListener("click", () => {
-    if (!animatedCard.style.transform)
-      animatedCard.style.transform = "translateX(200px)";
-    else {
-      animatedCard.style.transform = "";
-    }
-  });
-  animatedCard?.addEventListener("mouseover", () => {
-    animatedCard.style.backgroundColor = "gray";
-  });
+  const animatedCards = document.getElementsByClassName("animatedDiv");
+  for (const card of animatedCards) {
+    if (card instanceof HTMLElement) {
+      // Первая анимация - перемещение
+      card.addEventListener("click", () => {
+        if (!card.style.transform) {
+          card.style.transform = "translateX(200px)";
+        } else {
+          card.style.transform = "";
+        }
+      });
 
-  animatedCard?.addEventListener("mouseout", () => {
-    animatedCard.style.backgroundColor = "orange";
-  });
+      // Вторая анимация - изменение цвета
+      card.addEventListener("mouseover", () => {
+        card.style.backgroundColor = "gray";
+      });
+
+      card.addEventListener("mouseout", () => {
+        card.style.backgroundColor = "transparent";
+      });
+    }
+  }
   return (
     <Container>
       <h1 className="my-4">О нас</h1>
@@ -34,7 +42,7 @@ const AboutUs: React.FC = () => {
           md={6}
           sm={12}
         >
-          <Card id="animatedCard">
+          <Card className="animatedCard">
             <Card.Img
               height={200}
               variant="top"
@@ -59,7 +67,7 @@ const AboutUs: React.FC = () => {
           md={6}
           sm={12}
         >
-          <Card>
+          <Card className="animatedCard">
             <Card.Img
               height={200}
               variant="top"
@@ -85,7 +93,7 @@ const AboutUs: React.FC = () => {
           md={6}
           sm={12}
         >
-          <Card>
+          <Card className="animatedCard">
             <Card.Img
               height={200}
               variant="top"
@@ -129,6 +137,7 @@ const AboutUs: React.FC = () => {
           <Dropdown.Item>Социальная ответственность</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      <DiscountOffer />
     </Container>
   );
 };

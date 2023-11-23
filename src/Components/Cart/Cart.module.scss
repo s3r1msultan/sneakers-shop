@@ -1,3 +1,5 @@
+@import "../../styles/vars.scss";
+
 .overlay {
   position: fixed;
   left: 0;
@@ -48,12 +50,12 @@
     align-items: center;
     padding: 30px 20px;
     border-radius: 20px;
-    border: 1px solid #f3f3f3;
+    border: 1px solid $border-color;
     background: #fff;
     transition: all ease-in-out 0.2s;
     margin-bottom: 20px;
     &:hover {
-      border-color: #f8f8f8;
+      border-color: $border-color-hover;
       box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.05);
     }
     & > img {

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Card } from "../Components/Card/Card";
 import { AppContext } from "../context";
 import { Slider } from "../Components/Slider/Slider";
-import Quiz from "./Quiz";
+import DiscountOffer from "../Components/DiscountOffer/DiscountOffer";
 
 export function Home({
   onClickFavorite,
@@ -60,12 +60,7 @@ export function Home({
         </div>
       </div>
       <div className="sneakers">{renderCards()}</div>
-      <div style={{ display: "block" }}>
-        <h3>Небольшой куиз. Он ничего не определяет</h3>
-        <div>
-          <Quiz />
-        </div>
-      </div>
+      <DiscountOffer />
     </main>
   );
 }

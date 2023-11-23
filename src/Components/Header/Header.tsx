@@ -35,8 +35,8 @@ export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
                 width={40}
                 height={40}
               />
-              <div className={style.header__info + ""}>
-                <h3 className="">Sneakers Shop</h3>
+              <div className={style.header__info}>
+                <h3>Sneakers Shop</h3>
                 <p>Магазин лучших кроссовок</p>
               </div>
             </div>
@@ -45,12 +45,12 @@ export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse
           id="responsive-navbar-nav"
-          className="jcsb "
+          className={`jcsb`}
         >
           <Nav className="mr-auto">
             <Nav.Link>
               <Link
-                className="link-dark"
+                className={"link-dark " + style["link-dark"]}
                 to={"/"}
               >
                 Главная
@@ -58,15 +58,15 @@ export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
             </Nav.Link>
             <Nav.Link>
               <Link
-                className="link-dark"
+                className={"link-dark " + style["link-dark"]}
                 to={"/favorites"}
               >
-                Favorites
+                Избранные
               </Link>
             </Nav.Link>
             <Nav.Link>
               <Link
-                className="link-dark"
+                className={"link-dark " + style["link-dark"]}
                 to={"/contacts"}
               >
                 Контакты
@@ -74,7 +74,7 @@ export function Header({ setIsCartOpened }: { setIsCartOpened: Function }) {
             </Nav.Link>
             <Nav.Link>
               <Link
-                className="link-dark"
+                className={"link-dark " + style["link-dark"]}
                 to={"/about"}
               >
                 О нас

@@ -140,40 +140,21 @@
   }
 }
 
-// .orderButton {
-//   position: relative;
-//   &:hover {
-//     img {
-//       transform: translateX(5px);
-//     }
-//   }
-//   button {
-//     width: 100%;
-//     border-radius: 18px;
-//     height: 55px;
-//     background: #9dd458;
-//     color: #fff;
-//     font-size: 16px;
-//     font-weight: 600;
-//     opacity: 1;
-//     cursor: pointer;
-//     transition: all ease-in-out 0.2s;
-//     &:hover {
-//       background: lighten($color: #9dd458, $amount: 10%);
-//     }
-//     &:active {
-//       background: darken($color: #9dd458, $amount: 10%);
-//     }
-//   }
-//   img {
-//     position: absolute;
-//     right: 30px;
-//     top: 20px;
-//     transition: all ease-in-out 0.15s;
-//   }
-// }
-
 .invisible {
   transition: all linear 5s;
   display: none;
+}
+
+.discount_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  .video {
+    border-radius: 20px;
+    width: 75%;
+    height: 450px;
+    max-height: 400px;
+  }
 }

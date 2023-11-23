@@ -15,7 +15,8 @@ import "./App.scss";
 import { Footer } from "./Components/Footer/Footer";
 import AboutUs from "./pages/AboutUs";
 import Contacts from "./pages/Contacts";
-import Quiz from "./pages/Quiz";
+import DiscountOffer from "./Components/DiscountOffer/DiscountOffer";
+import DiscountPage from "./pages/DiscountPage";
 
 export interface SneakersItem {
   id: number;
@@ -25,6 +26,7 @@ export interface SneakersItem {
 }
 
 function App() {
+  const [discount, setDiscount] = useState<number>(0);
   const [sneakers, setSneakers] = useState<Array<SneakersItem>>([]);
   const [cartItems, setCartItems] = useState<Array<SneakersItem>>([]);
   const [favorites, setFavorites] = useState<Array<SneakersItem>>([]);
@@ -127,6 +129,8 @@ function App() {
   return (
     <AppContext.Provider
       value={{
+        discount,
+        setDiscount,
         sneakers,
         setSneakers,
         cartItems,
@@ -143,7 +147,6 @@ function App() {
           />
         )}
         <Header setIsCartOpened={setIsCartOpened} />
-        <div></div>
         <Routes>
           <Route
             path="/"
@@ -176,8 +179,8 @@ function App() {
             element={<AboutUs />}
           />
           <Route
-            path="/quiz"
-            element={<Quiz />}
+            path="/discount"
+            element={<DiscountPage />}
           />
         </Routes>
         <Footer />

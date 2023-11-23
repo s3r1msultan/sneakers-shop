@@ -1,0 +1,12 @@
+.footer {
+  border-radius: 20px;
+  margin-bottom: 5px;
+  .container {
+    p {
+      margin-bottom: 0;
+    }
+    p:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

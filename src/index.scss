@@ -22,3 +22,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.animatedDiv {
+  background-color: transparent;
+}
+
+.animatedDiv:hover {
+  background-color: gray;
+}

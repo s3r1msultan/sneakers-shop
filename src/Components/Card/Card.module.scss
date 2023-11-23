@@ -7,10 +7,11 @@
   background-color: #ffffff;
   cursor: pointer;
   transition: box-shadow ease-in-out 0.2s, transform ease-in-out 0.2s;
+
   &:hover {
     border-color: $border-color-hover;
     box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.05);
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
 
   & > * {
@@ -26,9 +27,16 @@
     background-color: transparent;
     opacity: 0.8;
     transition: all ease-in-out 0.2s;
+    border-radius: 12px;
+    border: solid 1px $border-color;
+
     &:hover {
       opacity: 1;
       box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+      border-color: $border-color-hover;
+    }
+    img {
+      border-radius: 12px;
     }
   }
 
@@ -55,6 +63,7 @@
       font-size: 14px;
     }
   }
+
   button {
     background-color: transparent;
     border-radius: 50%;

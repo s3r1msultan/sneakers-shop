@@ -8,7 +8,7 @@ interface CartProps {
 }
 
 export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
-  const { cartItems } = useContext(AppContext);
+  const { cartItems, discount } = useContext(AppContext);
   const totalPrice = cartItems.reduce((sum, { price }) => sum + price, 0);
   return (
     <div className={style.overlay}>
@@ -64,9 +64,9 @@ export function Cart({ onClickRemove, setIsCartOpened }: CartProps) {
               <b>{totalPrice} тг.</b>
             </li>
             <li>
-              <span>Налог 5%</span>
+              <span>Налог {5 - discount}%</span>
               <div></div>
-              <b>{totalPrice * 0.05} тг.</b>
+              <b>{(totalPrice * (5 - discount)) / 100} тг.</b>
             </li>
           </ul>
           <div className={style.orderButton}>

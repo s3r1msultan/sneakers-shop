@@ -2,6 +2,8 @@ import { createContext } from "react";
 import { SneakersItem } from "./App";
 
 type AppContext = {
+  discount: number;
+  setDiscount: Function;
   sneakers: SneakersItem[];
   cartItems: SneakersItem[];
   favorites: SneakersItem[];
@@ -11,6 +13,8 @@ type AppContext = {
 };
 
 export const AppContext = createContext<AppContext>({
+  discount: 0,
+  setDiscount: () => {},
   sneakers: [],
   cartItems: [],
   favorites: [],
