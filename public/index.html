@@ -47,5 +47,24 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $(window).scroll(function () {
+          if ($(this).scrollTop() > 500) {
+            $("#scroll-to-top").fadeIn();
+          } else {
+            $("#scroll-to-top").fadeOut();
+          }
+        });
+        $("#scroll-to-top").click(function () {
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+        });
+      });
+    </script>
   </body>
 </html>

@@ -126,6 +126,14 @@ function App() {
     return array.some((item) => item.id === sneakersItem.id);
   };
 
+  // $(window).scroll(function () {
+  //   if ($(this).scrollTop() > 500) {
+  //     $("#scroll-to-top").fadeIn();
+  //   } else {
+  //     $("#scroll-to-top").fadeOut();
+  //   }
+  // });
+
   return (
     <AppContext.Provider
       value={{
@@ -184,6 +192,7 @@ function App() {
           />
         </Routes>
         <Footer />
+        <button id="scroll-to-top">Top</button>
       </Container>
     </AppContext.Provider>
   );

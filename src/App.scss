@@ -158,3 +158,18 @@
     max-height: 400px;
   }
 }
+
+#scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  padding: 10px;
+  display: none;
+  background-color: #217a31;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    background-color: #76a003;
+  }
+}
